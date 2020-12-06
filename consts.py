@@ -1,0 +1,10 @@
+DEST_IMAGES_PATH = '../kits19/extracted_data/destination_images/'
+DEST_IMAGES_WITH_MASKS_PATH = '../kits19/extracted_data/destination_images_with_masks/'
+DEST_MASKS_PATH = '../kits19/extracted_data/destination_masks/'
+DEST_KIDNEY_MASKS_PATH = DEST_MASKS_PATH + 'kidneys/'
+DEST_TUMOR_MASKS_PATH = DEST_MASKS_PATH + 'tumors/'
+CASE_PATTERN = 'case_{:05d}'
+PNG_PATTERN = '{:05d}.png'
+PNG_IN_CASE_PATTERN = CASE_PATTERN + '/' + PNG_PATTERN
+MODEL_SAVE_DIR = 'training_{}_{}/'
+LOGS_DIR = 'logs/'
