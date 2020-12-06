@@ -1,12 +1,11 @@
 import os
-
 import tensorflow as tf
 
-from consts import MODEL_SAVE_DIR, LOGS_DIR
+from consts import LOGS_DIR
 
 
-def get_callbacks(training_name, index):
-    checkpoint_path = MODEL_SAVE_DIR.format(training_name, index) + "cp.ckpt"
+def get_callbacks(model_save_path):
+    checkpoint_path = model_save_path
 
     checkpoint_dir = os.path.dirname(checkpoint_path)
 
@@ -22,3 +21,5 @@ def get_callbacks(training_name, index):
         tf.keras.callbacks.TensorBoard(log_dir=LOGS_DIR),
         cp_callback
     ]
+
+get_callbacks("training_{}_{}/")

@@ -5,22 +5,31 @@ from skimage.io import imshow
 from callbacks import get_callbacks
 from models.unet_512 import build_model
 from read_data import get_images_and_masks
+from utils import get_save_model_path
 
 img_width = 512
 img_height = 512
 epochs = 200
+model_save_path = get_save_model_path()
 
 model = build_model()
+print("Model built")
 
 x_train, y_train = get_images_and_masks(img_width, img_height, 0, 80)
+print("Train data loaded")
 
-results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=epochs, callbacks=get_callbacks("unet_512", 1))
+results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=epochs, callbacks=get_callbacks(model_save_path))
+print("Learning ended")
 
 test_images, test_labels = get_images_and_masks(img_width, img_width, 81, 100)
+print("Test data loaded")
 
 # Re-evaluate the model
 loss, acc = model.evaluate(test_images, test_labels, verbose=1)
 print("Restored model, accuracy: {:5.2f}%".format(100 * acc))
+
+# model.load_weights(model_save_path)
+# print("Model weights loaded")
 
 preds_test = model.predict(test_images, verbose=1)
 
