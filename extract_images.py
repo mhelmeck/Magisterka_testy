@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 from imageio import imwrite
 
-from extracted_data.consts import DEST_IMAGES_WITH_MASKS_PATH, CASE_PATTERN, \
+from consts import DEST_IMAGES_WITH_MASKS_PATH, CASE_PATTERN, \
     PNG_PATTERN, DEST_TUMOR_MASKS_PATH, DEST_KIDNEY_MASKS_PATH, DEST_IMAGES_PATH
 from starter_code.utils import load_case
 from starter_code.visualize import hu_to_grayscale, class_to_color, overlay, visualize

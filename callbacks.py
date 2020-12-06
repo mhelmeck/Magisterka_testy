@@ -2,7 +2,7 @@ import os
 
 import tensorflow as tf
 
-from extracted_data.consts import MODEL_SAVE_DIR, LOGS_DIR
+from consts import MODEL_SAVE_DIR, LOGS_DIR
 
 
 def get_callbacks(training_name, index):

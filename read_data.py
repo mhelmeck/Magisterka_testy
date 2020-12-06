@@ -5,8 +5,7 @@ from skimage.io import imread
 from skimage.color import rgb2gray
 from skimage.transform import resize
 
-from extracted_data.consts import DEST_IMAGES_PATH, CASE_PATTERN, PNG_IN_CASE_PATTERN, \
-    DEST_KIDNEY_MASKS_PATH
+from consts import DEST_IMAGES_PATH, CASE_PATTERN, PNG_IN_CASE_PATTERN, DEST_KIDNEY_MASKS_PATH
 
 images_dir = DEST_IMAGES_PATH
 kidney_masks_dir = DEST_KIDNEY_MASKS_PATH

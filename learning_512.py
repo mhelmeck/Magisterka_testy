@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from skimage.io import imshow
 
-from extracted_data.read_data import get_images_and_masks
-from extracted_data.models.unet_512 import build_model
-from extracted_data.callbacks import get_callbacks
+from callbacks import get_callbacks
+from models.unet_512 import build_model
+from read_data import get_images_and_masks
 
 img_width = 512
 img_height = 512
