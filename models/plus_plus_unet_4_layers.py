@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-def build_model_plus_plus():
+def build_model(img_width, img_height, channels_number):
     inputs = tf.keras.layers.Input((img_width, img_height, channels_number))
     # norm_inputs = tf.keras.layers.Lambda(lambda x: x / 255)(inputs)
 
