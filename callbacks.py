@@ -21,5 +21,3 @@ def get_callbacks(model_save_path):
         tf.keras.callbacks.TensorBoard(log_dir=LOGS_DIR),
         cp_callback
     ]
-
-get_callbacks("training_{}_{}/")

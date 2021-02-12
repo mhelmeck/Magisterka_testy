@@ -1,11 +1,6 @@
 import tensorflow as tf
 
-img_width = 512
-img_height = 512
-channels_number = 3
-
-def build_model():
-    # Build the model
+def build_model(img_width, img_height, channels_number):
     inputs = tf.keras.layers.Input((img_width, img_height, channels_number))
 
     x00 = tf.keras.layers.BatchNormalization()(inputs)
@@ -46,42 +41,8 @@ def build_model():
     x40 = tf.keras.layers.BatchNormalization()(x40)
     x40 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x40)
     x40 = tf.keras.layers.Dropout(0.2)(x40)
-    p4 = tf.keras.layers.MaxPooling2D((2, 2))(x40)
 
-    x50 = tf.keras.layers.BatchNormalization()(p4)
-    x50 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x50)
-    x50 = tf.keras.layers.Dropout(0.2)(x50)
-    x50 = tf.keras.layers.BatchNormalization()(x50)
-    x50 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x50)
-    x50 = tf.keras.layers.Dropout(0.2)(x50)
-    p6 = tf.keras.layers.MaxPooling2D((2, 2))(x50)
-
-    x60 = tf.keras.layers.BatchNormalization()(p6)
-    x60 = tf.keras.layers.Conv2D(1024, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x60)
-    x60 = tf.keras.layers.Dropout(0.2)(x60)
-    x60 = tf.keras.layers.BatchNormalization()(x60)
-    x60 = tf.keras.layers.Conv2D(1024, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x60)
-    x60 = tf.keras.layers.Dropout(0.2)(x60)
-
-    # -------
-
-    x51 = tf.keras.layers.Conv2DTranspose(512, kernel_size=(2, 2), strides=(2, 2), padding='same')(x60)
-    x51 = tf.keras.layers.concatenate([x50, x51])
-    x51 = tf.keras.layers.BatchNormalization()(x51)
-    x51 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x51)
-    x51 = tf.keras.layers.BatchNormalization()(x51)
-    x51 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x51)
-    x51 = tf.keras.layers.Dropout(0.2)(x51)
-
-    x41 = tf.keras.layers.Conv2DTranspose(256, kernel_size=(2, 2), strides=(2, 2), padding='same')(x51)
-    x41 = tf.keras.layers.concatenate([x40, x41])
-    x41 = tf.keras.layers.BatchNormalization()(x41)
-    x41 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x41)
-    x41 = tf.keras.layers.BatchNormalization()(x41)
-    x41 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x41)
-    x41 = tf.keras.layers.Dropout(0.2)(x41)
-
-    x31 = tf.keras.layers.Conv2DTranspose(128, kernel_size=(2, 2), strides=(2, 2), padding='same')(x41)
+    x31 = tf.keras.layers.Conv2DTranspose(128, kernel_size=(2, 2), strides=(2, 2), padding='same')(x40)
     x31 = tf.keras.layers.concatenate([x30, x31])
     x31 = tf.keras.layers.BatchNormalization()(x31)
     x31 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x31)
@@ -113,9 +74,8 @@ def build_model():
     x04 = tf.keras.layers.Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x04)
     x04 = tf.keras.layers.Dropout(0.2)(x04)
 
-    outputs = tf.keras.layers.Conv2D(1, (1,1), activation='sigmoid')(x04)
+    outputs = tf.keras.layers.Conv2D(1, kernel_size=(1, 1), activation='sigmoid')(x04)
 
     model = tf.keras.Model(inputs=[inputs], outputs=[outputs])
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    model.summary()
     return model
