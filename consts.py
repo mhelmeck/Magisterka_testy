@@ -7,4 +7,5 @@ CASE_PATTERN = 'case_{:05d}'
 PNG_PATTERN = '{:05d}.png'
 PNG_IN_CASE_PATTERN = CASE_PATTERN + '/' + PNG_PATTERN
 MODEL_SAVE_DIR = 'training_{}_{}/'
+MODEL_SAVE_PATH = 'training_{}_{}/cp.ckpt'
 LOGS_DIR = 'logs/'
