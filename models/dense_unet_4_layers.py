@@ -58,7 +58,6 @@ def DenseBlock(features, inputs_0):
     return dense_conv_layer_3
 
 
-
 def DenseConvLayer(features, inputs):
     batch_normalization_0 = BatchNormalization()(inputs)
     conv_0 = Conv2D(features, (1, 1), activation='relu', kernel_initializer='he_normal', padding='same')(batch_normalization_0)
@@ -69,6 +68,7 @@ def DenseConvLayer(features, inputs):
     dropout = Dropout(0.2)(conv_1)
 
     return dropout
+
 
 def TransitionBlock(features, inputs):
     batch_normalization_0 = BatchNormalization()(inputs)
