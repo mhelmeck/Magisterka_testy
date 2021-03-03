@@ -7,8 +7,8 @@ from skimage.transform import resize
 
 from consts import DEST_IMAGES_PATH, CASE_PATTERN, PNG_IN_CASE_PATTERN, DEST_KIDNEY_MASKS_PATH
 
-images_dir = "../kits19/" + DEST_IMAGES_PATH
-kidney_masks_dir = "../kits19/" + DEST_KIDNEY_MASKS_PATH
+images_dir = "../" + DEST_IMAGES_PATH
+kidney_masks_dir = "../" + DEST_KIDNEY_MASKS_PATH
 
 
 def get_images_and_masks(expected_img_width, expected_img_height, start_case_index, end_case_index,
