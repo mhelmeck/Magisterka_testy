@@ -1,25 +1,58 @@
 from tensorflow.python.keras.layers import *
 from tensorflow.python.keras.models import Model
 
+def conv_block(inputs, filters, pool=True):
+  x = Conv2D(filters, (3, 3), padding="same")(inputs) #kernel_initializer='he_normal'
+  x = BatchNormalization()(x)
+  x = Activation("relu")(x)
+  x = Dropout(0.2)(x)
+
+  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
+  x = BatchNormalization()(x)
+  x = Activation("relu")(x)
+  x = Dropout(0.2)(x)
+
+  if pool == True:
+      p = MaxPooling2D((2, 2))(x)
+      return x, p
+  else:
+      return x
+
+def conv_block_transpose(inputs, filters, concatenation_list):
+  x = Conv2DTranspose(filters, (2, 2), strides=(2, 2), padding='same')(inputs)
+  x = concatenate(concatenation_list + [x])
+  
+  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
+  x = BatchNormalization()(x)
+  x = Activation("relu")(x)
+  
+  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
+  x = BatchNormalization()(x)
+  x = Activation("relu")(x)
+  x = Dropout(0.2)(x)
+  
+  return x
 
 def build_model(img_width, img_height, channels_number, start_neurons=16):
     inputs = Input((img_width, img_height, channels_number))
 
-    x00 = BatchNormalization()(inputs)
-    x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
-    x00 = Dropout(0.2)(x00)
-    x00 = BatchNormalization()(x00)
-    x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
-    x00 = Dropout(0.2)(x00)
-    p0 = MaxPooling2D((2, 2))(x00)
+    x00, p0 = conv_block(inputs, 32, pool=True)
+    # x00 = BatchNormalization()(inputs)
+    # x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
+    # x00 = Dropout(0.2)(x00)
+    # x00 = BatchNormalization()(x00)
+    # x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
+    # x00 = Dropout(0.2)(x00)
+    # p0 = MaxPooling2D((2, 2))(x00)
 
-    x10 = BatchNormalization()(p0)
-    x10 = Conv2D(start_neurons * 2, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x10)
-    x10 = Dropout(0.2)(x10)
-    x10 = BatchNormalization()(x10)
-    x10 = Conv2D(start_neurons * 2, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x10)
-    x10 = Dropout(0.2)(x10)
-    p1 = MaxPooling2D((2, 2))(x10)
+    x10, p1 = conv_block(p1, 64, pool=True)
+    # x10 = BatchNormalization()(p0)
+    # x10 = Conv2D(start_neurons * 2, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x10)
+    # x10 = Dropout(0.2)(x10)
+    # x10 = BatchNormalization()(x10)
+    # x10 = Conv2D(start_neurons * 2, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x10)
+    # x10 = Dropout(0.2)(x10)
+    # p1 = MaxPooling2D((2, 2))(x10)
 
     x01 = Conv2DTranspose(start_neurons * 1, kernel_size=(2, 2), strides=(2, 2), padding='same')(x10)
     x01 = concatenate([x00, x01])
