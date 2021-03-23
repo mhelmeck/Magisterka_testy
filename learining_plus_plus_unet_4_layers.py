@@ -6,8 +6,8 @@ from models.plus_plus_unet_4_layers import build_model
 from read_data import get_images_and_masks
 from utils import get_save_model_path
 
-img_width = 512
-img_height = 512
+img_width = 128
+img_height = 128
 channel_numbers = 3
 epochs = 200
 
