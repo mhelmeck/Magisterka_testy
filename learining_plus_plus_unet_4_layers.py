@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.metrics import f1_score
 
 from callbacks import get_callbacks
-from models.plus_plus_unet_4_layers import build_model
+from models.plus_plus_unet_4_layers import build_model_plus
 from read_data import get_images_and_masks
 from utils import get_save_model_path
 
@@ -12,10 +12,9 @@ channel_numbers = 3
 epochs = 200
 
 print('Started')
-model_save_path = get_save_model_path('plus_plus_unet_4_layers')
+# model_save_path = get_save_model_path('plus_plus_unet_4_layers')
 
-model = build_model(img_width, img_height, channel_numbers)
-model.summary()
+model = build_model_plus(img_width, img_height, channel_numbers)
 print("Model built")
 
 # x_train, y_train = get_images_and_masks(img_width, img_height, 0, 180, True)

@@ -4,7 +4,8 @@ from tensorflow.python.keras.models import Model
 from models.building_blocks.conv_block import conv_block
 from models.building_blocks.conv_block_transpose import conv_block_transpose
 
-def build_model(img_width, img_height, channels_number, start_neurons=16):
+def build_model_plus(img_width, img_height, channels_number, start_neurons=16):
+  print('Zaczynam budowac')
   inputs = Input((img_width, img_height, channels_number))
 
   x00, p0 = conv_block(inputs, 32, pool=True)
