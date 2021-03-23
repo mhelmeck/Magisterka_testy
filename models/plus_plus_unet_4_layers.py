@@ -1,43 +1,8 @@
 from tensorflow.python.keras.layers import *
 from tensorflow.python.keras.models import Model
 
-# ------------------------------------------------------------------------------------
-
-def conv_block(inputs, filters, pool=True):
-  x = Conv2D(filters, (3, 3), padding="same")(inputs) #kernel_initializer='he_normal'
-  x = BatchNormalization()(x)
-  x = Activation("relu")(x)
-  x = Dropout(0.2)(x)
-
-  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
-  x = BatchNormalization()(x)
-  x = Activation("relu")(x)
-  x = Dropout(0.2)(x)
-
-  if pool == True:
-      p = MaxPooling2D((2, 2))(x)
-      return x, p
-  else:
-      return x
-
-# ------------------------------------------------------------------------------------
-
-def conv_block_transpose(inputs, filters, concatenation_list):
-  x = Conv2DTranspose(filters, (2, 2), strides=(2, 2), padding='same')(inputs)
-  x = concatenate(concatenation_list + [x])
-  
-  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
-  x = BatchNormalization()(x)
-  x = Activation("relu")(x)
-  
-  x = Conv2D(filters, (3, 3), padding="same")(x) #kernel_initializer='he_normal'
-  x = BatchNormalization()(x)
-  x = Activation("relu")(x)
-  x = Dropout(0.2)(x)
-  
-  return x
-
-# ------------------------------------------------------------------------------------
+from models.building_blocks.conv_block import conv_block
+from models.building_blocks.conv_block_transpose import conv_block_transpose
 
 def build_model(img_width, img_height, channels_number, start_neurons=16):
   inputs = Input((img_width, img_height, channels_number))
