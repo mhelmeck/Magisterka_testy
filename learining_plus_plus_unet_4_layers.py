@@ -15,6 +15,7 @@ print('Started')
 # model_save_path = get_save_model_path('plus_plus_unet_4_layers')
 
 model = build_model_plus(img_width, img_height, channel_numbers)
+model.summary()
 print("Model built")
 
 # x_train, y_train = get_images_and_masks(img_width, img_height, 0, 180, True)
