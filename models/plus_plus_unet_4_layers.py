@@ -61,5 +61,6 @@ def build_model_plus(img_width, img_height, channels_number, start_neurons=16):
   outputs = Conv2D(1, kernel_size=(1, 1), activation='sigmoid')(x04)
 
   model = Model(inputs=[inputs], outputs=[outputs])
+  print("kompiluje")
   model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
   return model
