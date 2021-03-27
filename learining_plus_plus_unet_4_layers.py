@@ -1,20 +1,14 @@
-import numpy as np
-from sklearn.metrics import f1_score
-
-from callbacks import get_callbacks
 from models.plus_plus_unet_4_layers import build_model_plus
-from read_data import get_images_and_masks
-from utils import get_save_model_path
-
-img_width = 128
-img_height = 128
-channel_numbers = 3
-epochs = 200
+from utils.utils import load_variables
 
 print('Started')
+(channel_numbers, img_size, epochs, batch_size, starts_neuron, start_case_index_train, end_case_index_train,
+ start_case_index_test, end_case_index_test) = load_variables()
+print('Variables loaded')
+
 # model_save_path = get_save_model_path('plus_plus_unet_4_layers')
 
-model = build_model_plus(img_width, img_height, channel_numbers)
+model = build_model_plus(img_size, img_size, channel_numbers, starts_neuron)
 model.summary()
 print("Model built")
 

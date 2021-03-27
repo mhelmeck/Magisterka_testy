@@ -1,31 +1,32 @@
-import matplotlib.pyplot as plt
 import numpy as np
-from skimage.io import imshow
 
-from callbacks import get_callbacks
+from utils.callbacks import get_callbacks
 from models.unet_6_layers import build_model
-from read_data import get_images_and_masks
-from utils import get_save_model_path
+from utils.read_data import get_images_and_masks
+from utils.utils import get_save_model_path, load_variables
 from sklearn.metrics import f1_score
 
-img_width = 512
-img_height = 512
-channel_numbers = 3
-epochs = 200
-
 print('Started')
+(channel_numbers, img_size, epochs, batch_size, starts_neuron, start_case_index_train, end_case_index_train,
+ start_case_index_test, end_case_index_test) = load_variables()
+print('Variables loaded')
+
 model_save_path = get_save_model_path('unet_6_layers')
 
-model = build_model(img_width, img_height, channel_numbers)
+model = build_model(img_size, img_size, channel_numbers, starts_neuron)
 print("Model built")
 
-x_train, y_train = get_images_and_masks(img_width, img_height, 0, 180, True)
+model.summary()
+print("Model summary")
+
+x_train, y_train = get_images_and_masks(img_size, img_size, start_case_index_train, end_case_index_train, True)
 print("Train data loaded")
 
-results = model.fit(x_train, y_train, validation_split=0.2, batch_size=32, epochs=epochs, callbacks=get_callbacks(model_save_path))
+results = model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=epochs,
+                    callbacks=get_callbacks(model_save_path))
 print("Learning ended")
 
-test_images, test_labels = get_images_and_masks(img_width, img_height, 181, 209, True)
+test_images, test_labels = get_images_and_masks(img_size, img_size, start_case_index_test, end_case_index_test, True)
 print("Test data loaded")
 
 loss, acc = model.evaluate(test_images, test_labels, verbose=1)
