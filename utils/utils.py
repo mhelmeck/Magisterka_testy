@@ -13,16 +13,16 @@ def load_variables():
     channel_numbers = 3
     profile = get_profile_name()
     model_name = get_model_name()
-    img_size = os.environ.get('IMG_SIZE') if os.environ.get('IMG_SIZE') else 512
-    epochs = os.environ.get('EPOCHS') if os.environ.get('EPOCHS') else 512
-    batch_size = os.environ.get('BATCH_SIZE') if os.environ.get('BATCH_SIZE') else 32
-    starts_neuron = os.environ.get('STARTS_NEURON') if os.environ.get('STARTS_NEURON') else 16
+    img_size = int(os.environ.get('IMG_SIZE')) if os.environ.get('IMG_SIZE') else 512
+    epochs = int(os.environ.get('EPOCHS')) if os.environ.get('EPOCHS') else 512
+    batch_size = int(os.environ.get('BATCH_SIZE')) if os.environ.get('BATCH_SIZE') else 32
+    starts_neuron = int(os.environ.get('STARTS_NEURON')) if os.environ.get('STARTS_NEURON') else 16
 
-    start_case_index_train = os.environ.get('START_CASE_INDEX_TRAIN') if os.environ.get('START_CASE_INDEX_TRAIN') else 0
-    end_case_index_train = os.environ.get('END_CASE_INDEX_TRAIN') if os.environ.get('END_CASE_INDEX_TRAIN') else 180
+    start_case_index_train = int(os.environ.get('START_CASE_INDEX_TRAIN')) if os.environ.get('START_CASE_INDEX_TRAIN') else 0
+    end_case_index_train = int(os.environ.get('END_CASE_INDEX_TRAIN')) if os.environ.get('END_CASE_INDEX_TRAIN') else 180
 
-    start_case_index_test = os.environ.get('START_CASE_INDEX_TEST') if os.environ.get('START_CASE_INDEX_TEST') else 181
-    end_case_index_test = os.environ.get('END_CASE_INDEX_TRAIN') if os.environ.get('END_CASE_INDEX_TRAIN') else 209
+    start_case_index_test = int(os.environ.get('START_CASE_INDEX_TEST')) if os.environ.get('START_CASE_INDEX_TEST') else 181
+    end_case_index_test = int(os.environ.get('END_CASE_INDEX_TRAIN')) if os.environ.get('END_CASE_INDEX_TRAIN') else 209
 
     print(
         'Executing model with parameters: \n'
