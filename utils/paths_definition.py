@@ -2,12 +2,12 @@ from utils.os_variable_utils import get_profile_name
 
 CASE_IMAGES_DIR = {
     'local': '../destination_clean/',
-    'cloud': 'gs://magisterka-w-chmurach-bucket/data/case-images/'
+    'cloud': '/home/jupyter/data/case-images/'
 }
 
 CASE_MASKS_DIR = {
     'local': '../destination_mask/',
-    'cloud': 'gs://magisterka-w-chmurach-bucket/data/case-masks/'
+    'cloud': '/home/jupyter/data/case-masks/'
 }
 CASE_IMAGES_WITH_MASKS_DIR = {
     'local': '../destination_with_label/',
@@ -15,11 +15,11 @@ CASE_IMAGES_WITH_MASKS_DIR = {
 }
 MODEL_SAVE_DIR = {
     'local': 'training_result/training_{}_{}/',
-    'cloud': 'gs://magisterka-w-chmurach-bucket/training_results/'
+    'cloud': '/home/jupyter/training_results/'
 }
 LOGS_DIR = {
     'local': 'logs/',
-    'cloud': 'gs://magisterka-w-chmurach-bucket/logs/'
+    'cloud': '/home/jupyter/logs/'
 }
 
 
