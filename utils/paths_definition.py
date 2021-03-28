@@ -2,12 +2,12 @@ from utils.os_variable_utils import get_profile_name
 
 CASE_IMAGES_DIR = {
     'local': '../destination_clean/',
-    'cloud': '/home/jupyter/data/case-images/'
+    'cloud': '/home/jupyter/data/case_images/'
 }
 
 CASE_MASKS_DIR = {
     'local': '../destination_mask/',
-    'cloud': '/home/jupyter/data/case-masks/'
+    'cloud': '/home/jupyter/data/case_masks/'
 }
 CASE_IMAGES_WITH_MASKS_DIR = {
     'local': '../destination_with_label/',
