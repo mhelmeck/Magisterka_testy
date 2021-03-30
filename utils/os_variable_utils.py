@@ -2,7 +2,7 @@ import os
 
 
 def get_profile_name():
-    return os.environ.get('PROFILE') if os.environ.get('PROFILE') else 'local'
+    return os.environ.get('PROFILE') if os.environ.get('PROFILE') else 'local-m'
 
 
 def get_model_name():

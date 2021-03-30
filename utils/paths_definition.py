@@ -1,24 +1,29 @@
 from utils.os_variable_utils import get_profile_name
 
 CASE_IMAGES_DIR = {
-    'local': '../destination_clean/',
+    'local-a': '../kits19/extracted_data/destination_images/',
+    'local-m': '../kits19/extracted_data/destination_images/',
     'cloud': '/home/jupyter/data/case_images/'
 }
 
 CASE_MASKS_DIR = {
-    'local': '../destination_mask/',
+    'local-a': '../kits19/extracted_data/destination_masks/',
+    'local-m': '../kits19/extracted_data/destination_masks/',
     'cloud': '/home/jupyter/data/case_masks/'
 }
 CASE_IMAGES_WITH_MASKS_DIR = {
-    'local': '../destination_with_label/',
+    'local-a': '../kits19/extracted_data/destination_images_with_masks/',
+    'local-m': '../kits19/extracted_data/destination_images_with_masks/',
     'cloud': ''
 }
 MODEL_SAVE_DIR = {
-    'local': 'training_result/training_{}_{}/',
+    'local-a': 'training_result/training_{}_{}/',
+    'local-m': 'training_result/training_{}_{}/',
     'cloud': '/home/jupyter/training_results/'
 }
 LOGS_DIR = {
-    'local': 'logs/',
+    'local-a': 'logs/',
+    'local-m': 'logs/',
     'cloud': '/home/jupyter/logs/'
 }
 
