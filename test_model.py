@@ -33,8 +33,8 @@ def test_model(model_save_dir_path):
     preds_test = model.predict(test_images, verbose=1)
     preds_test_t = (preds_test > 0.6).astype(np.uint8)
 
-    f1_score = f1_score(test_labels.flatten().flatten(), preds_test_t.flatten().flatten())
-    print('F1 score: %f' % f1_score)
+    f1_score_result = f1_score(test_labels.flatten().flatten(), preds_test_t.flatten().flatten())
+    print('F1 score: %f' % f1_score_result)
 
 
 if __name__ == "__main__":
