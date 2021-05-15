@@ -81,10 +81,10 @@ pred_test = model.predict(test_images, verbose=1)
 pred_test_t = (pred_test > 0.6).astype(np.uint8)
 print("[LOG] Did finish predictions")
 
-print("[LOG] Start F1 calculation with test data")
+print("[LOG] Start F1 calculation with predicted data")
 f1_score = f1_score(test_labels.flatten().flatten(), pred_test_t.flatten().flatten())
 print("[LOG] Did calculate F1 score")
-print('[LOG] F1 score for model: %f' % f1_score)
+print('[LOG] F1 score: %f' % f1_score)
 
 # model.load_weights(model_save_path)
 # print("Model weights loaded")
