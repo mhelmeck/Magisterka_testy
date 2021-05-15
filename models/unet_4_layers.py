@@ -5,13 +5,7 @@ from tensorflow.python.keras.models import Model
 def build_model(img_width, img_height, channels_number, start_neurons=16):
     inputs = Input((img_width, img_height, channels_number))
 
-    x00 = BatchNormalization()(inputs)
-    x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
-    x00 = Dropout(0.2)(x00)
-    x00 = BatchNormalization()(x00)
-    x00 = Conv2D(start_neurons * 1, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x00)
-    x00 = Dropout(0.2)(x00)
-    p0 = MaxPooling2D((2, 2))(x00)
+
 
     x10 = BatchNormalization()(p0)
     x10 = Conv2D(start_neurons * 2, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x10)
