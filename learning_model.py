@@ -55,7 +55,7 @@ results = model.fit(
     batch_size=batch_size,
     epochs=epochs,
     callbacks=get_callbacks(model_save_path))
-print("[LOG] Did learn with success")
+print("[LOG] Did finish learning")
 
 print('[LOG] Loading test data for cases from: ', start_case_index_test, " to: ", end_case_index_test)
 test_images, test_labels = get_images_and_masks(
@@ -76,12 +76,15 @@ loss, acc = model.evaluate(
 print("[LOG] Did evaluate model")
 print("[LOG] Current model accuracy: {:5.2f}%".format(100 * acc))
 
+print("[LOG] Start model predictions with test data")
+pred_test = model.predict(test_images, verbose=1)
+pred_test_t = (pred_test > 0.6).astype(np.uint8)
+print("[LOG] Did finish predictions")
+
+print("[LOG] Start F1 calculation with test data")
+f1_score = f1_score(test_labels.flatten().flatten(), pred_test_t.flatten().flatten())
+print("[LOG] Did calculate F1 score")
+print('[LOG] F1 score for model: %f' % f1_score)
+
 # model.load_weights(model_save_path)
 # print("Model weights loaded")
-#
-# print("Prediction started")
-# preds_test = model.predict(test_images, verbose=1)
-# preds_test_t = (preds_test > 0.6).astype(np.uint8)
-#
-# f1_score = f1_score(test_labels.flatten().flatten(), preds_test_t.flatten().flatten())
-# print('F1 score: %f' % f1_score)
