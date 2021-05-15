@@ -1,15 +1,13 @@
 from tensorflow.python.keras.layers import *
 
+from models.building_blocks.conv_2d import conv_2d
 
-def conv_block(inputs, filters, pool=True):
-    x = Conv2D(filters, (3, 3), kernel_initializer='he_normal', padding="same")(inputs)
-    x = BatchNormalization()(x)
-    x = Activation("relu")(x)
+
+def conv_block(inputs, features, kernel_size=(3, 3), pool=True):
+    x = conv_2d(inputs, features, kernel_size)
     x = Dropout(0.2)(x)
 
-    x = Conv2D(filters, (3, 3), kernel_initializer='he_normal', padding="same")(x)
-    x = BatchNormalization()(x)
-    x = Activation("relu")(x)
+    x = conv_2d(x, features, kernel_size)
     x = Dropout(0.2)(x)
 
     if pool:
