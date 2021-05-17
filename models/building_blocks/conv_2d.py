@@ -7,3 +7,4 @@ def conv_2d(inputs, features, kernel_size):
     x = Activation("relu")(x)
 
     return x
+

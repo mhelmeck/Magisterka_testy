@@ -1,6 +1,7 @@
 from tensorflow.python.keras.layers import *
 from tensorflow.python.keras.models import Model
 
+from models.building_blocks.conv_2d_transpose import conv_2d_transpose
 from models.building_blocks.conv_block import conv_2d, conv_block
 
 
@@ -24,20 +25,16 @@ def build_model(img_width, img_height, channels_number, start_neurons=16):
 
     x40 = dense_block(start_neurons * 16, pool3)
 
-    x31 = Conv2DTranspose(start_neurons * 8, kernel_size=(2, 2), strides=(2, 2), padding='same')(x40)
-    x31 = concatenate([x30, x31])
+    x31 = conv_2d_transpose(x40, start_neurons * 8, [x30])
     x31 = dense_block(start_neurons * 8, x31)
 
-    x22 = Conv2DTranspose(start_neurons * 4, kernel_size=(2, 2), strides=(2, 2), padding='same')(x31)
-    x22 = concatenate([x20, x22])
+    x22 = conv_2d_transpose(x31, start_neurons * 4, [x20])
     x22 = dense_block(start_neurons * 4, x22)
 
-    x13 = Conv2DTranspose(start_neurons * 2, kernel_size=(2, 2), strides=(2, 2), padding='same')(x22)
-    x13 = concatenate([x10, x13])
+    x13 = conv_2d_transpose(x22, start_neurons * 2, [x10])
     x13 = dense_block(start_neurons * 2, x13)
 
-    x04 = Conv2DTranspose(start_neurons * 1, kernel_size=(2, 2), strides=(2, 2), padding='same')(x13)
-    x04 = concatenate([x00, x04])
+    x04 = conv_2d_transpose(x13, start_neurons, [x00])
     x04 = dense_block(start_neurons * 1, x04)
 
     outputs = Conv2D(1, kernel_size=(1, 1), activation='sigmoid')(x04)
