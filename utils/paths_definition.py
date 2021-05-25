@@ -19,7 +19,7 @@ CASE_IMAGES_WITH_MASKS_DIR = {
 MODEL_SAVE_DIR = {
     'local-a': 'training_result/training_{}_{}/',
     'local-m': 'training_result/training_{}_{}/',
-    'cloud': '/home/jupyter/training_results/'
+    'cloud': '/home/jupyter/training_results/training_{}_{}/'
 }
 LOGS_DIR = {
     'local-a': 'logs/',
