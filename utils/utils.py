@@ -23,6 +23,7 @@ def load_variables():
 
     start_case_index_test = int(os.environ.get('START_CASE_INDEX_TEST')) if os.environ.get('START_CASE_INDEX_TEST') else 181
     end_case_index_test = int(os.environ.get('END_CASE_INDEX_TEST')) if os.environ.get('END_CASE_INDEX_TEST') else 209
+    trained_model_weights_path = os.environ.get('TRAINED_MODEL_WEIGHTS_PATH') if os.environ.get('TRAINED_MODEL_WEIGHTS_PATH') else ''
 
     print(
         'Executing model with parameters: \n'
@@ -35,9 +36,11 @@ def load_variables():
         'START_CASE_INDEX_TRAIN = %s\n' % start_case_index_train,
         'END_CASE_INDEX_TRAIN = %s\n' % end_case_index_train,
         'START_CASE_INDEX_TEST = %s\n' % start_case_index_test,
-        'END_CASE_INDEX_TEST = %s\n' % end_case_index_test
+        'END_CASE_INDEX_TEST = %s\n' % end_case_index_test,
+        'TRAINED_MODEL_WEIGHTS_PATH = %s\n' % trained_model_weights_path
     )
 
     return (model_name, channel_numbers, img_size, epochs, batch_size, starts_neuron, start_case_index_train,
             end_case_index_train,
-            start_case_index_test, end_case_index_test)
+            start_case_index_test, end_case_index_test,
+            trained_model_weights_path)

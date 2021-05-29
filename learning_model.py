@@ -19,7 +19,8 @@ print('[LOG] Loading variables')
     start_case_index_train,
     end_case_index_train,
     start_case_index_test,
-    end_case_index_test
+    end_case_index_test,
+    trained_model_weights_path
 ) = load_variables()
 print('[LOG] Did load variables')
 
