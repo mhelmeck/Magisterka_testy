@@ -3,13 +3,13 @@ from utils.os_variable_utils import get_profile_name
 CASE_IMAGES_DIR = {
     'local-a': '../kits19/extracted_data/destination_images/',
     'local-m': '../kits19/extracted_data/destination_images/',
-    'cloud': '/home/jupyter/data/case_images/'
+    'cloud': '/home/maciek/data/case_images/'
 }
 
 CASE_MASKS_DIR = {
     'local-a': '../kits19/extracted_data/destination_masks/',
     'local-m': '../kits19/extracted_data/destination_masks/',
-    'cloud': '/home/jupyter/data/case_masks/'
+    'cloud': '/home/maciek/data/case_masks/'
 }
 CASE_IMAGES_WITH_MASKS_DIR = {
     'local-a': '../kits19/extracted_data/destination_images_with_masks/',
@@ -19,12 +19,12 @@ CASE_IMAGES_WITH_MASKS_DIR = {
 MODEL_SAVE_DIR = {
     'local-a': 'training_result/training_{}_{}/',
     'local-m': 'training_result/training_{}_{}/',
-    'cloud': '/home/jupyter/training_results/training_{}_{}/'
+    'cloud': '/home/maciek/training_results/training_{}_{}/'
 }
 LOGS_DIR = {
     'local-a': 'logs/',
     'local-m': 'logs/',
-    'cloud': '/home/jupyter/logs/'
+    'cloud': '/home/maciek/logs/'
 }
 
 
