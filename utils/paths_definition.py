@@ -1,18 +1,19 @@
+from utils.consts import CASE_PATTERN, PNG_PATTERN
 from utils.os_variable_utils import get_profile_name
 
 CASE_IMAGES_DIR = {
-    'local-a': '../kits19/extracted_data/destination_images/',
+    'local-a': 'D:/ALEKSY/data_mgr/extracted_data/destination_images/',
     'local-m': '../kits19/extracted_data/destination_images/',
     'cloud': '/home/maciek/data/case_images/'
 }
 
 CASE_MASKS_DIR = {
-    'local-a': '../kits19/extracted_data/destination_masks/',
+    'local-a': 'D:/ALEKSY/data_mgr/extracted_data/destination_masks/',
     'local-m': '../kits19/extracted_data/destination_masks/',
     'cloud': '/home/maciek/data/case_masks/'
 }
 CASE_IMAGES_WITH_MASKS_DIR = {
-    'local-a': '../kits19/extracted_data/destination_images_with_masks/',
+    'local-a': '/mnt/d/ALEKSY/data_mgr/extracted_data/destination_images_with_masks/',
     'local-m': '../kits19/extracted_data/destination_images_with_masks/',
     'cloud': ''
 }
@@ -25,6 +26,11 @@ LOGS_DIR = {
     'local-a': 'logs/',
     'local-m': 'logs/',
     'cloud': '/home/maciek/logs/'
+}
+PREDICTION_RESULTS_WITH_MASKS = {
+    'local-a': 'D:/ALEKSY/data_mgr/prediction_results/results_for_{}_{}_{}/',
+    'local-m': 'prediction_results/results_for_{}_{}_{}/',
+    'cloud': '/home/maciek/prediction_results/results_for_{}_{}_{}/',
 }
 
 
@@ -46,3 +52,11 @@ def get_images_dir():
 
 def get_logs_dir():
     return LOGS_DIR[get_profile_name()]
+
+
+def get_prediction_results_case_dir(model_name, threshold, img_size, case_index):
+    return PREDICTION_RESULTS_WITH_MASKS[get_profile_name()].format(model_name, threshold, img_size) + CASE_PATTERN.format(case_index)
+
+
+def get_prediction_results_image_path(model_name, threshold, img_size, case_index, img_index):
+    return get_prediction_results_case_dir(model_name, threshold, img_size, case_index) + '/' + PNG_PATTERN.format(img_index)

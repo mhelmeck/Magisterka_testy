@@ -55,7 +55,6 @@ loss, acc = model.evaluate(
 print("[LOG] Did evaluate model")
 print("[LOG] Current model accuracy: {:5.2f}%".format(100 * acc))
 
-
 print("[LOG] Calculate f1, precision, recall - for thresholds")
 thresholds = arange(0.0, 1.0, 0.04)
 result = np.zeros((len(thresholds), 4))
